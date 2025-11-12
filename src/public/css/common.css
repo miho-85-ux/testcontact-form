@@ -1,0 +1,19 @@
+.header {
+    background: #fff;
+    border-bottom: 5px solid #f3f3f3;
+}
+
+.header__inner {
+    margin: 0 auto;
+    padding: 20px 15px;
+    max-width: 1230px;
+    text-align: center;
+}
+
+.header__logo {
+    color: #978777;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+}
