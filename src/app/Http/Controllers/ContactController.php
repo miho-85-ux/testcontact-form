@@ -11,12 +11,21 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $contacts = contact::all();
+        // $contact = contact::first();
         $categories = Category::all();
-        return view('index', compact('contacts', 'categories'));
+        $contact = new Contact(); 
+        return view('index', compact('contact', 'categories'));
+    }
+    
+    public function confirm(ContactRequest $request)
+    {
+        $data = $request->validated();
+        $data['tel'] = $request->tel1. '-'. $request->tel2. '-'. $request->tel3;
+        return view('confirm', compact('data'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $tel = $request->input('tel1'). '-'. $request->input('tel2'). '-'. $request->input('tel3');
         $content = $request->only([
             'category_id',
@@ -31,6 +40,7 @@ class ContactController extends Controller
         ]);
         $content['tel'] = $tel;
         Contact::create($content);
-        return redirect()->route('confirm');
+        return view('thanks');
     }
+
 }
