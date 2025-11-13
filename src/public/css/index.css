@@ -88,3 +88,7 @@ select,
 ::picker(select) {
     appearance: base-select;
 }
+
+.form__error {
+    color: #f49799;
+}

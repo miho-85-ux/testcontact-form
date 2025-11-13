@@ -20,6 +20,6 @@ Route::get('/', function () {
 
 Route::get('/', [ContactController::class, 'index']);
 
-Route::post('/confirm', [ContactController::class, 'comfirm']);
+Route::post('/confirm', [ContactController::class, 'confirm']);
 
 
