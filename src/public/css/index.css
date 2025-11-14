@@ -16,7 +16,7 @@
 }
 
 .form__group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;   
     align-items: flex-start;
 }
@@ -87,4 +87,10 @@
 select,
 ::picker(select) {
     appearance: base-select;
+}
+
+.form__error {
+    color: #f49799;
+    text-align: justify;
+    margin-bottom: 10px;
 }

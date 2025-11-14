@@ -9,17 +9,22 @@
     <div class="contact-form__head">
         <h1>Contact</h1>
     </div>
-    @foreach($contacts as $contact)
-    <form class="form" action="" method="POST">
+    <form class="form" action="/confirm" method="POST">
+        @csrf
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--title">お名前</span>
                 <span class="form__label--required">※</span>
             </div>
             <div class="form__group-content">
-                <input class="form__inout--text" type="text" name="first_name" value="例: {{ $contact->first_name }}" >
-                <input class="form__inout--text" type="text" name="last_name" value="例: {{ $contact->last_name }}">
+                <input class="form__inout--text" type="text" name="first_name" placeholder="例: 山田" value="{{ old('first_name', $contact->first_name ?? '') }}" >
+                <input class="form__inout--text" type="text" name="last_name" placeholder="例: 太郎" value="{{ old('last_name', $contact->last_name  ?? '') }}">
             </div>
+        </div>
+        <div class="form__error">
+            @error('name')
+            {{ $message }}
+            @enderror
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -32,14 +37,24 @@
                 <label class="form__label--radio"><input type="radio" name="gender" value="3">その他</label>
             </div>
         </div>
+        <div class="form__error">
+            @error('gender')
+            {{ $message }}
+            @enderror
+        </div>
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--title">メールアドレス</span>
                 <span class="form__label--required">※</span>
             </div>
             <div class="form__group-content">
-                <input class="form__inout--text" type="email" name="enail" value="例: {{ $contact->email }}">
+                <input class="form__inout--text" type="email" name="email" placeholder="例: test@example.com" value="{{ old('email', $contact->email ?? '') }}">
             </div>
+        </div>
+        <div class="form__error">
+            @error('email')
+            {{ $message }}
+            @enderror
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -48,12 +63,17 @@
             </div>
             <div class="form__group-content">
                 @php
-                    $telParts = explode('-', $contact->tel);
+                $telParts = explode( '-', $contact->tel ?? '');
                 @endphp
-                <input class="form__inout--text" type="tel" name="tel1" size="4" value="{{ $telParts[0] ?? ''  }}">-
-                <input class="form__inout--text" type="tel" name="tel2" size="4" value="{{ $telParts[1] ?? ''  }}">-
-                <input class="form__inout--text" type="tel" name="tel3" size="4" value="{{ $telParts[2] ?? ''  }}">
+                <input class="form__inout--text" type="tel" name="tel1" placeholder="080" size="4" value="{{ old('tel1', $telParts[0] ?? '') }}">-
+                <input class="form__inout--text" type="tel" name="tel2" placeholder="1234" size="4" value="{{ old('tel2', $telParts[1] ?? '') }}">-
+                <input class="form__inout--text" type="tel" name="tel3" placeholder="5678" size="4" value="{{ old('tel3', $telParts[2] ?? '') }}">
             </div>
+        </div>
+        <div class="form__error">
+            @error('tel')
+            {{ $message }}
+            @enderror
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -61,42 +81,61 @@
                 <span class="form__label--required">※</span>
             </div>
             <div class="form__group-content">
-                <input class="form__inout--text" type="text" name="address" value="例: {{ $contact->address }}">
+                <input class="form__inout--text" type="text" name="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address', $contact->address ?? '') }}">
             </div>
+        </div>
+        <div class="form__error">
+            @error('address')
+            {{ $message }}
+            @enderror
         </div>
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--title">建物名</span>
             </div>
             <div class="form__group-content">
-                <input class="form__inout--text" type="text" name="building" value="例: {{ $contact->building }}">
+                <input class="form__inout--text" type="text" name="building" placeholder="例: 千駄ヶ谷マンション101" value="{{ old('building', $contact->building ?? '') }}">
             </div>
+        </div>
+        <div class="form__error">
+            @error('building')
+            {{ $message }}
+            @enderror
         </div>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--title">お問い合わせの種類<span>
+                <span class="form__label--title">お問い合わせの種類</span>
             </div>
             <div class="form__group-content">
                 <select class="form__inout--text" name="category_id">
                     <option value="" selected disabled>選択してください</option>
                     @foreach($categories as $category)
-                        <option value="{{ $category -> id }}">{{ $category->content}}</option>
+                    <option value="{{ $category -> id }}">{{ $category->content}}</option>
                     @endforeach
                 </select>
             </div>
         </div>
+        <div class="form__error">
+           @error('content')
+           {{ $message }}
+           @enderror
+       </div>
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--title">お問い合わせの内容</span>
             </div>
             <div class="form__group-content">
-                <textarea class="form__inout--text" name="detail">{{ $contact->detail }}</textarea>
+                <textarea class="form__inout--text" name="detail" placeholder="お問い合わせ内容を入力してください">{{ old('detail',$contact->detail) }}</textarea>
             </div>
+        </div>
+        <div class="form__error">
+            @error('detail')
+            {{ $message }}
+            @enderror
         </div>
         <div class="form__button">
             <button class="form__button--submit"  type="submit">確認画面</button>
         </div>
     </form>
-    @endforeach
 </div>
 @endsection

@@ -11,12 +11,31 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $contacts = contact::all();
         $categories = Category::all();
-        return view('index', compact('contacts', 'categories'));
+        $contact = new Contact(); 
+        return view('index', compact('contact', 'categories'));
+    }
+    
+    public function confirm(ContactRequest $request)
+    {
+        if ($request->input('action') === 'back'){
+            return redirect('/')->withInput();
+        }
+
+        $data = $request->validated();
+        $data['tel'] = $request->tel1. '-'. $request->tel2. '-'. $request->tel3;
+        $data['gender_text'] = ['1' => '男性', '2' => '女性', '3' => 'その他'][$data['gender']];
+        $data['category_name'] = Category::find($data['category_id'])->content;
+
+        return view('confirm', compact('data'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        if ($request->input('action') === 'back') {
+        return redirect('/')->withInput();
+        }
+
         $tel = $request->input('tel1'). '-'. $request->input('tel2'). '-'. $request->input('tel3');
         $content = $request->only([
             'category_id',
@@ -31,6 +50,11 @@ class ContactController extends Controller
         ]);
         $content['tel'] = $tel;
         Contact::create($content);
-        return redirect()->route('confirm');
+        return redirect('/thanks');
     }
+
+    public function thanks() {
+        return view('/thanks');
+    }
+
 }
