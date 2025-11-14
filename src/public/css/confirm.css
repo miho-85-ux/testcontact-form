@@ -1,0 +1,92 @@
+.confirm-form__content {
+    margin: 0 auto;
+    max-width: 1230px;
+}
+
+.confirm-form__title {
+    padding: 25px;
+    text-align: center;
+    color: #978777;
+    font-family: "Playfair Display", serif;
+}
+
+.form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.confirm-table__inner {
+    width: 100%;
+    border: 2px solid #ebeaea;
+}
+
+.confirm-table__row {
+    border-bottom: 2px solid #ebeaea;
+}
+
+.confirm-table__header {
+    padding: 15px;
+    width: 30%;
+    background-color: #baa899;
+    color: #f3e6db;
+    font-weight: bold;
+}
+ .confirm-table__text--name {
+    padding: 25px;
+    border: none;
+    color: #ab917c;
+    font-size: 15px;
+ }
+
+ .confirm-table__text--gender {
+    padding: 25px;
+    border: none;
+    color: #ab917c;
+    font-size: 15px;
+ }
+
+ .confirm-table__text--category {
+    padding: 25px;
+    border: none;
+    color: #ab917c;
+    font-size: 15px;
+ }
+
+ .confirm-table__text input{
+    padding: 25px;
+    border: none;
+    color: #ab917c;
+    font-size: 15px;
+ }
+
+ .confirm-table__text textarea {
+    padding: 25px;
+    border: none;
+    color: #ab917c;
+    width: 100%;
+    resize: none;
+ }
+
+.confirm-table__button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.button-submit {
+    background-color: #82746a;
+    color: #f7d2b3;
+    padding: 5px 40px;
+    margin: 30px;
+    font-size: 18px;
+}
+
+.button-submit__modify {
+    padding: 5px 40px;
+    margin: 30px;
+    font-size: 18px;
+    border: none;
+    text-decoration: underline;
+    background-color: transparent;
+    color: #ab917c;
+}
