@@ -53,4 +53,8 @@ class ContactController extends Controller
         return redirect('/thanks');
     }
 
+    public function thanks() {
+        return view('/thanks');
+    }
+
 }
