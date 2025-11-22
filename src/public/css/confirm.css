@@ -57,6 +57,7 @@
     border: none;
     color: #ab917c;
     font-size: 15px;
+    width: 100%;
  }
 
  .confirm-table__text textarea {

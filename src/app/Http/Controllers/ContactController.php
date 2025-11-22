@@ -26,6 +26,7 @@ class ContactController extends Controller
         $data['tel'] = $request->tel1. '-'. $request->tel2. '-'. $request->tel3;
         $data['gender_text'] = ['1' => '男性', '2' => '女性', '3' => 'その他'][$data['gender']];
         $data['category_name'] = Category::find($data['category_id'])->content;
+        $data['building'] = $request->building ?? '';
 
         return view('confirm', compact('data'));
     }
